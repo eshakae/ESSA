@@ -1,7 +1,28 @@
-<?php
-session_start();
-session_unset(); // Menghapus semua data sesi
-session_destroy(); // Menghancurkan sesi
-header('Location: index.php');
-exit;
-?>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Data Peserta ESSA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Reset Data Peserta ESSA - Regenerasi</h2>
+
+        <p>Apakah Anda yakin ingin menghapus semua data peserta yang terdaftar?</p>
+
+        <button id="resetButton">Ya, Reset Data</button>
+        <p><a href="peserta.html">Kembali ke Daftar Peserta</a></p>
+    </div>
+
+    <script>
+        document.getElementById('resetButton').addEventListener('click', function() {
+            // Menghapus data peserta dari localStorage
+            localStorage.removeItem('peserta');
+            alert('Data peserta telah direset!');
+            window.location.href = 'peserta.html';  // Kembali ke halaman daftar peserta
+        });
+    </script>
+</body>
+</html>
