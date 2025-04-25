@@ -17,7 +17,7 @@
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Gender</th>
-                        <th>Jabatan yang dipilih</th>
+                        <th>Jabatan yang Dipilih</th>
                     </tr>
                 </thead>
                 <tbody>
