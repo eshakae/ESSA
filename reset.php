@@ -1,5 +1,7 @@
 <?php
 session_start();
-unset($_SESSION['peserta']);
-header("Location: peserta.php");
+session_unset(); // Menghapus semua data sesi
+session_destroy(); // Menghancurkan sesi
+header('Location: index.php');
 exit;
+?>
