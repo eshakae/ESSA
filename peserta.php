@@ -1,7 +1,9 @@
 <?php session_start(); ?>
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daftar Peserta ESSA</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -24,10 +26,10 @@
                     <?php foreach ($_SESSION['peserta'] as $i => $p): ?>
                         <tr>
                             <td><?= $i + 1 ?></td>
-                            <td><?= $p['nama'] ?></td>
-                            <td><?= $p['email'] ?></td>
-                            <td><?= $p['gender'] ?></td>
-                            <td><?= $p['jabatan'] ?></td>
+                            <td><?= htmlspecialchars($p['nama']) ?></td>
+                            <td><?= htmlspecialchars($p['email']) ?></td>
+                            <td><?= htmlspecialchars($p['gender']) ?></td>
+                            <td><?= htmlspecialchars($p['jabatan']) ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
