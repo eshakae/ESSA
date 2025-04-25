@@ -16,14 +16,18 @@
             <label>Nama:</label>
             <input type="text" id="nama" name="nama" required>
 
-            <label>Email:</label>
-            <input type="email" id="email" name="email" required>
+            <label>Kelas:</label>
+            <input type="text" id="kelas" name="kelas" required>
 
-            <label>Jenis Kelamin:</label>
-            <select id="gender" name="gender" required>
-                <option value="">-- Pilih --</option>
-                <option value="Laki-laki">Laki-laki</option>
-                <option value="Perempuan">Perempuan</option>
+            <label>Divisi Saat Ini:</label>
+            <select id="divisi" name="divisi" required>
+                <option value="">-- Pilih Divisi --</option>
+                <option value="Talent">Talent</option>
+                <option value="Design">Design</option>
+                <option value="Operator">Operator</option>
+                <option value="Content Creator">Content Creator</option>
+                <option value="Editor">Editor</option>
+                <option value="Web Development">Web Development</option>
             </select>
 
             <label>Jabatan yang Dipilih:</label>
@@ -60,14 +64,14 @@
             event.preventDefault();
 
             const nama = document.getElementById('nama').value;
-            const email = document.getElementById('email').value;
-            const gender = document.getElementById('gender').value;
+            const kelas = document.getElementById('kelas').value;
+            const divisi = document.getElementById('divisi').value;
             const jabatan = document.getElementById('jabatan').value;
 
             // Simulate form submission success
-            if (nama && email && gender && jabatan) {
+            if (nama && kelas && divisi && jabatan) {
                 let peserta = JSON.parse(localStorage.getItem('peserta')) || [];
-                peserta.push({ nama, email, gender, jabatan });
+                peserta.push({ nama, kelas, divisi, jabatan });
                 localStorage.setItem('peserta', JSON.stringify(peserta));
 
                 showMessage('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
