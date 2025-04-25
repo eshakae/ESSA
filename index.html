@@ -1,32 +1,80 @@
-<form id="formPendaftaran" method="POST" action="proses.php">
-    <label>Nama:</label>
-    <input type="text" id="nama" name="nama" required>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran ESSA - Regenerasi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Pendaftaran ESSA - Regenerasi</h2>
 
-    <label>Email:</label>
-    <input type="email" id="email" name="email" required>
+        <div id="message"></div>
 
-    <label>Jenis Kelamin:</label>
-    <select id="gender" name="gender" required>
-        <option value="">-- Pilih --</option>
-        <option value="Laki-laki">Laki-laki</option>
-        <option value="Perempuan">Perempuan</option>
-    </select>
+        <form id="formPendaftaran">
+            <label>Nama:</label>
+            <input type="text" id="nama" name="nama" required>
 
-    <label>Jabatan yang Dipilih:</label>
-    <select id="jabatan" name="jabatan" required>
-        <option value="">-- Pilih Jabatan --</option>
-        <option value="Ketua">Ketua</option>
-        <option value="Sekretaris">Sekretaris</option>
-        <option value="Bendahara">Bendahara</option>
-        <option value="Inventaris">Inventaris</option>
-        <option value="Humas">Humas</option>
-        <option value="PIC Talent">PIC Talent</option>
-        <option value="PIC Design">PIC Design</option>
-        <option value="PIC Operator">PIC Operator</option>
-        <option value="PIC Content Creator">PIC Content Creator</option>
-        <option value="PIC Editor">PIC Editor</option>
-        <option value="PIC Web Development">PIC Web Development</option>
-    </select>
+            <label>Email:</label>
+            <input type="email" id="email" name="email" required>
 
-    <button type="submit">Daftar</button>
-</form>
+            <label>Jenis Kelamin:</label>
+            <select id="gender" name="gender" required>
+                <option value="">-- Pilih --</option>
+                <option value="Laki-laki">Laki-laki</option>
+                <option value="Perempuan">Perempuan</option>
+            </select>
+
+            <label>Jabatan yang Dipilih:</label>
+            <select id="jabatan" name="jabatan" required>
+                <option value="">-- Pilih Jabatan --</option>
+                <option value="Ketua">Ketua</option>
+                <option value="Sekretaris">Sekretaris</option>
+                <option value="Bendahara">Bendahara</option>
+                <option value="Inventaris">Inventaris</option>
+                <option value="Humas">Humas</option>
+                <option value="PIC Talent">PIC Talent</option>
+                <option value="PIC Design">PIC Design</option>
+                <option value="PIC Operator">PIC Operator</option>
+                <option value="PIC Content Creator">PIC Content Creator</option>
+                <option value="PIC Editor">PIC Editor</option>
+                <option value="PIC Web Development">PIC Web Development</option>
+            </select>
+
+            <button type="submit">Daftar</button>
+        </form>
+
+        <p><a href="peserta.html">Lihat Daftar Peserta</a></p>
+    </div>
+
+    <script>
+        // Function to display message based on success or error
+        function showMessage(type, message) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.innerHTML = `<div class="${type}">${message}</div>`;
+        }
+
+        // Form submission handler
+        document.getElementById('formPendaftaran').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const nama = document.getElementById('nama').value;
+            const email = document.getElementById('email').value;
+            const gender = document.getElementById('gender').value;
+            const jabatan = document.getElementById('jabatan').value;
+
+            // Simulate form submission success
+            if (nama && email && gender && jabatan) {
+                let peserta = JSON.parse(localStorage.getItem('peserta')) || [];
+                peserta.push({ nama, email, gender, jabatan });
+                localStorage.setItem('peserta', JSON.stringify(peserta));
+
+                showMessage('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
+            } else {
+                showMessage('error', 'Mohon lengkapi semua kolom!');
+            }
+        });
+    </script>
+</body>
+</html>
