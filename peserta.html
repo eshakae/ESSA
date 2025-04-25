@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Peserta ESSA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Daftar Peserta ESSA - Regenerasi</h2>
+
+        <div id="pesertaList"></div>
+
+        <p><a href="index.html">Kembali ke Form</a></p>
+    </div>
+
+    <script>
+        // Displaying the list of participants
+        function displayPeserta() {
+            const peserta = JSON.parse(localStorage.getItem('peserta')) || [];
+            const pesertaListDiv = document.getElementById('pesertaList');
+
+            if (peserta.length > 0) {
+                let table = `<table>
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Gender</th>
+                                        <th>Jabatan yang Dipilih</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+
+                peserta.forEach((p, index) => {
+                    table += `<tr>
+                                  <td>${index + 1}</td>
+                                  <td>${p.nama}</td>
+                                  <td>${p.email}</td>
+                                  <td>${p.gender}</td>
+                                  <td>${p.jabatan}</td>
+                              </tr>`;
+                });
+
+                table += `</tbody></table>`;
+                pesertaListDiv.innerHTML = table;
+            } else {
+                pesertaListDiv.innerHTML = '<p>Belum ada peserta.</p>';
+            }
+        }
+
+        // Calling function to display peserta list when the page is loaded
+        window.onload = displayPeserta;
+    </script>
+</body>
+</html>
