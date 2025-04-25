@@ -1,36 +1,35 @@
 <?php
 session_start();
 
-function validasiForm($data) {
-    $errors = [];
+// Cek apakah data sudah ada di form
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nama = $_POST['nama'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    $jabatan = $_POST['jabatan'];
 
-    if (empty($data['nama'])) $errors[] = "Nama wajib diisi.";
-    if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) $errors[] = "Email tidak valid.";
-    if (empty($data['gender'])) $errors[] = "Jenis kelamin wajib dipilih.";
-    if (empty($data['jabatan'])) $errors[] = "Jabatan yang dilamar wajib dipilih.";
+    // Validasi data
+    if ($nama && $email && $gender && $jabatan) {
+        // Menyimpan data peserta dalam sesi
+        if (!isset($_SESSION['peserta'])) {
+            $_SESSION['peserta'] = [];
+        }
 
-    return $errors;
+        $_SESSION['peserta'][] = [
+            'nama' => $nama,
+            'email' => $email,
+            'gender' => $gender,
+            'jabatan' => $jabatan
+        ];
+
+        // Redirect ke halaman daftar peserta
+        header('Location: peserta.php');
+        exit;
+    } else {
+        // Jika ada data yang kosong, tampilkan error
+        $_SESSION['error'] = 'Mohon lengkapi semua kolom!';
+        header('Location: index.php');
+        exit;
+    }
 }
-
-$data = [
-    'nama' => htmlspecialchars($_POST['nama']),
-    'email' => htmlspecialchars($_POST['email']),
-    'gender' => $_POST['gender'],
-    'jabatan' => $_POST['jabatan']
-];
-
-$errors = validasiForm($data);
-
-if (!isset($_SESSION['peserta'])) {
-    $_SESSION['peserta'] = [];
-}
-
-if (empty($errors)) {
-    $_SESSION['peserta'][] = $data;
-    $_SESSION['sukses'] = "Pendaftaran berhasil!";
-    header("Location: index.php");
-} else {
-    $_SESSION['error'] = implode("<br>", $errors);
-    header("Location: index.php");
-}
-exit;
+?>
