@@ -10,7 +10,7 @@
     <div class="container">
         <h2>Reset Data Peserta ESSA - Regenerasi</h2>
 
-        <p>Apakah Anda yakin ingin menghapus semua data peserta yang terdaftar?</p>
+        <p>Apakah Anda yakin ingin menghapus semua data peserta?</p>
 
         <button id="resetButton">Ya, Reset Data</button>
         <p><a href="peserta.html">Kembali ke Daftar Peserta</a></p>
@@ -18,17 +18,12 @@
 
     <script>
         document.getElementById('resetButton').addEventListener('click', function() {
-            // Menghapus data peserta dari localStorage
             localStorage.removeItem('peserta');
-            alert('Data peserta telah direset!');
+            alert('Data peserta berhasil direset!');
 
-            // Pindah ke halaman peserta dan paksa reload
-            window.location.href = 'peserta.html';
-
-            // Tunggu sebentar baru reload supaya data kosong benar-benar kebaca
             setTimeout(() => {
-                location.reload(true);
-            }, 200); // delay kecil 200ms
+                window.location.href = 'peserta.html';
+            }, 500); // 0.5 detik setelah alert baru pindah
         });
     </script>
 </body>
