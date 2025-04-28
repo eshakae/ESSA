@@ -59,7 +59,7 @@ table th, table td {
     background-color: #f8d7da;
     padding: 10px;
     border: 1px solid red;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 .success {
@@ -67,7 +67,7 @@ table th, table td {
     background-color: #d4edda;
     padding: 10px;
     border: 1px solid green;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 a {
