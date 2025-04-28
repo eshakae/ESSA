@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proses Pendaftaran ESSA</title>
+    <title>Pendaftaran ESSA - Regenerasi</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -63,18 +63,26 @@
         document.getElementById('formPendaftaran').addEventListener('submit', function(event) {
             event.preventDefault();
 
-            const nama = document.getElementById('nama').value;
-            const kelas = document.getElementById('kelas').value;
+            const nama = document.getElementById('nama').value.trim();
+            const kelas = document.getElementById('kelas').value.trim();
             const divisi = document.getElementById('divisi').value;
             const jabatan = document.getElementById('jabatan').value;
 
-            // Simulate form submission success
             if (nama && kelas && divisi && jabatan) {
                 let peserta = JSON.parse(localStorage.getItem('peserta')) || [];
                 peserta.push({ nama, kelas, divisi, jabatan });
                 localStorage.setItem('peserta', JSON.stringify(peserta));
 
                 showMessage('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
+
+                // Reset form setelah berhasil daftar
+                document.getElementById('formPendaftaran').reset();
+
+                // Redirect ke daftar peserta setelah 2 detik
+                setTimeout(() => {
+                    window.location.href = 'peserta.html';
+                }, 2000);
+
             } else {
                 showMessage('error', 'Mohon lengkapi semua kolom!');
             }
