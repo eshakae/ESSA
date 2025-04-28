@@ -12,11 +12,10 @@
 
         <div id="pesertaList"></div>
 
-        <p><a href="index.html">Kembali ke Form</a></p>
+        <p><a href="index.html">Kembali ke Form</a> | <a href="reset.html">Reset Data</a></p>
     </div>
 
     <script>
-        // Fungsi untuk menampilkan daftar peserta
         function displayPeserta() {
             const peserta = JSON.parse(localStorage.getItem('peserta')) || [];
             const pesertaListDiv = document.getElementById('pesertaList');
@@ -28,8 +27,8 @@
                                         <th>No</th>
                                         <th>Nama</th>
                                         <th>Kelas</th>
-                                        <th>Divisi Saat Ini</th>
-                                        <th>Jabatan yang Dipilih</th>
+                                        <th>Divisi</th>
+                                        <th>Jabatan</th>
                                     </tr>
                                 </thead>
                                 <tbody>`;
@@ -47,11 +46,10 @@
                 table += `</tbody></table>`;
                 pesertaListDiv.innerHTML = table;
             } else {
-                pesertaListDiv.innerHTML = '<p>Belum ada peserta.</p>';
+                pesertaListDiv.innerHTML = '<p>Belum ada peserta terdaftar.</p>';
             }
         }
 
-        // Panggil fungsi saat halaman selesai dimuat
         window.onload = function() {
             displayPeserta();
         };
