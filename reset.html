@@ -21,7 +21,14 @@
             // Menghapus data peserta dari localStorage
             localStorage.removeItem('peserta');
             alert('Data peserta telah direset!');
-            window.location.href = 'peserta.html';  // Kembali ke halaman daftar peserta
+
+            // Pindah ke halaman peserta dan paksa reload
+            window.location.href = 'peserta.html';
+
+            // Tunggu sebentar baru reload supaya data kosong benar-benar kebaca
+            setTimeout(() => {
+                location.reload(true);
+            }, 200); // delay kecil 200ms
         });
     </script>
 </body>
