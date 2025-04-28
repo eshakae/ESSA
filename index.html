@@ -50,16 +50,15 @@
         </form>
 
         <p><a href="peserta.html">Lihat Daftar Peserta</a></p>
+        <p><a href="reset.html">Reset Semua Data</a></p>
     </div>
 
     <script>
-        // Function to display message based on success or error
         function showMessage(type, message) {
             const messageDiv = document.getElementById('message');
             messageDiv.innerHTML = `<div class="${type}">${message}</div>`;
         }
 
-        // Form submission handler
         document.getElementById('formPendaftaran').addEventListener('submit', function(event) {
             event.preventDefault();
 
@@ -68,13 +67,15 @@
             const divisi = document.getElementById('divisi').value;
             const jabatan = document.getElementById('jabatan').value;
 
-            // Simulate form submission success
             if (nama && kelas && divisi && jabatan) {
                 let peserta = JSON.parse(localStorage.getItem('peserta')) || [];
                 peserta.push({ nama, kelas, divisi, jabatan });
                 localStorage.setItem('peserta', JSON.stringify(peserta));
 
                 showMessage('success', 'Pendaftaran berhasil! Terima kasih telah mendaftar.');
+
+                // Clear form
+                document.getElementById('formPendaftaran').reset();
             } else {
                 showMessage('error', 'Mohon lengkapi semua kolom!');
             }
