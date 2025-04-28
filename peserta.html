@@ -12,7 +12,9 @@
 
         <div id="pesertaList"></div>
 
-        <p><a href="index.html">Kembali ke Form</a> | <a href="reset.html">Reset Data</a></p>
+        <button id="resetButton" style="margin-top: 20px;">Reset Semua Data</button>
+
+        <p><a href="index.html">Kembali ke Form</a></p>
     </div>
 
     <script>
@@ -50,9 +52,15 @@
             }
         }
 
-        window.onload = function() {
-            displayPeserta();
-        };
+        document.getElementById('resetButton').addEventListener('click', function() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua data peserta?')) {
+                localStorage.removeItem('peserta');
+                alert('Data peserta berhasil dihapus.');
+                location.reload();
+            }
+        });
+
+        window.onload = displayPeserta;
     </script>
 </body>
 </html>
